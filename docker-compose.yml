@@ -1,0 +1,79 @@
+version: "3.9"
+
+services:
+
+  #  MySQL 8 
+  db:
+    image: mysql:8.0
+    container_name: scaninfotech_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost",
+             "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - scannet
+
+  #  phpMyAdmin 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: scaninfotech_pma
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - scannet
+
+  #  FastAPI Application 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: scaninfotech_app
+    restart: on-failure
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - scannet
+    entrypoint: >
+      sh -c "
+        echo 'Waiting for database to be ready...' &&
+        sleep 5 &&
+        alembic upgrade head &&
+        gunicorn app.main:app --config gunicorn.conf.py
+      "
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  scannet:
+    driver: bridge
