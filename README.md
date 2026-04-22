@@ -1,6 +1,4 @@
-# Scan Info Tech — E-Commerce API
-
-Production-ready REST API built with **FastAPI + MySQL 8 + SQLAlchemy + Alembic + Gunicorn + Docker**.
+# Scan Info Tech, providing enterprise networking products and IT solutions
 
 ---
 
@@ -23,22 +21,23 @@ Production-ready REST API built with **FastAPI + MySQL 8 + SQLAlchemy + Alembic 
 
 ```
 scan_info_tech/
-├── app/
-│   ├── main.py            # App factory, lifespan, routers, error handlers
-│   ├── config.py          # Pydantic Settings (env-driven)
-│   ├── database.py        # Engine, SessionLocal, get_db()
-│   ├── models/            # SQLAlchemy ORM models
-│   ├── schemas/           # Pydantic v2 request/response schemas
-│   ├── routes/            # FastAPI routers (one file per domain)
-│   ├── services/          # Business logic (no HTTP concerns)
-│   ├── core/              # Security helpers + FastAPI dependencies
-│   └── utils/             # Cloudinary wrapper
-├── alembic/               # Database migration scripts
-├── requirements.txt
-├── gunicorn.conf.py       # Production Gunicorn config
-├── Dockerfile             # Multi-stage build
-├── docker-compose.yml     # app + MySQL 8 + phpMyAdmin
-└── .env.example
+backend/
+  ├── app/
+  │   ├── main.py            # App factory, lifespan, routers, error handlers
+  │   ├── config.py          # Pydantic Settings (env-driven)
+  │   ├── database.py        # Engine, SessionLocal, get_db()
+  │   ├── models/            # SQLAlchemy ORM models
+  │   ├── schemas/           # Pydantic v2 request/response schemas
+  │   ├── routes/            # FastAPI routers (one file per domain)
+  │   ├── services/          # Business logic (no HTTP concerns)
+  │   ├── core/              # Security helpers + FastAPI dependencies
+  │   └── utils/             # Cloudinary wrapper
+  ├── alembic/               # Database migration scripts
+  ├── requirements.txt
+  ├── gunicorn.conf.py       # Production Gunicorn config
+  ├── Dockerfile             # Multi-stage build
+  ├── docker-compose.yml     # app + MySQL 8 + phpMyAdmin
+  └── .env.example
 ```
 
 ---
