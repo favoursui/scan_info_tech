@@ -201,12 +201,3 @@ docker compose exec db mysql -u scanuser -pscanpassword scaninfotech \
 
 ---
 
-## Security Checklist for Production
-
-- [ ] Set a long random `JWT_SECRET_KEY` (use `openssl rand -hex 32`)
-- [ ] Restrict `CORS` `allow_origins` to your actual frontend domain
-- [ ] Use a managed DB (e.g. AWS RDS / PlanetScale) — not the Docker MySQL
-- [ ] Put Gunicorn behind Nginx or a cloud load balancer
-- [ ] Enable HTTPS (TLS termination at proxy level)
-- [ ] Rotate Cloudinary credentials regularly
-- [ ] Never commit `.env` — add it to `.gitignore` ✅ (already done)
