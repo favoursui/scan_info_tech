@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
 
-  #  MySQL 8 
+  # ── MySQL 8 ────────────────────────────────────────────────────────────────
   db:
     image: mysql:8.0
     container_name: scaninfotech_db
@@ -22,11 +22,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-      start_period: 30s
+      start_period: 40s
     networks:
       - scannet
 
-  #  phpMyAdmin 
+  # ── phpMyAdmin ─────────────────────────────────────────────────────────────
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: scaninfotech_pma
@@ -43,7 +43,7 @@ services:
     networks:
       - scannet
 
-  #  FastAPI Application 
+  # ── FastAPI Application ────────────────────────────────────────────────────
   app:
     build:
       context: .
@@ -55,6 +55,8 @@ services:
       - .env
     environment:
       DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "8000:8000"
     depends_on:
@@ -62,13 +64,7 @@ services:
         condition: service_healthy
     networks:
       - scannet
-    entrypoint: >
-      sh -c "
-        echo 'Waiting for database to be ready...' &&
-        sleep 5 &&
-        alembic upgrade head &&
-        gunicorn app.main:app --config gunicorn.conf.py
-      "
+    entrypoint: ["sh", "entrypoint.sh"]
 
 volumes:
   mysql_data:

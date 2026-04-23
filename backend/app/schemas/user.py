@@ -31,6 +31,7 @@ class UserOut(BaseModel):
     username: str
     shipping_address: str | None
     is_admin: bool
+    is_suspended: bool
     created_at: datetime
     updated_at: datetime
 
