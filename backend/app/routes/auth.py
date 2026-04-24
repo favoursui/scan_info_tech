@@ -2,7 +2,7 @@
 app/routes/auth.py
 Public authentication endpoints: register and login.
 """
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, BackgroundTasks, Depends, status
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.schemas.user import UserCreate, UserOut, UserLogin, Token
@@ -18,6 +18,10 @@ def register(payload: UserCreate, db: Session = Depends(get_db)):
 
 
 @router.post("/login", response_model=Token)
-def login(payload: UserLogin, db: Session = Depends(get_db)):
+def login(
+    payload: UserLogin,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db),
+):
     """Authenticate and receive a JWT bearer token."""
-    return login_user(payload, db)
+    return login_user(payload, db, background_tasks)

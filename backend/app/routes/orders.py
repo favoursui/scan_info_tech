@@ -1,6 +1,6 @@
 """
 app/routes/orders.py
-Protected order endpoints – checkout and order history.
+Protected order endpoints.
 """
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
@@ -13,16 +13,13 @@ from app.services.order_service import checkout, get_order_history
 router = APIRouter(prefix="/orders", tags=["Orders"])
 
 
-@router.post("/checkout", response_model=OrderOut, status_code=201)
+@router.post("/checkout")
 def place_order(
     payload: CheckoutRequest,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """
-    Checkout a cart item.
-    Confirms the order, deducts stock, and records a transaction.
-    """
+    """Checkout a cart item. Returns a success message with order details."""
     return checkout(payload.cart_id, current_user, db)
 
 

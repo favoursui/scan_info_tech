@@ -28,6 +28,8 @@ settings = get_settings()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("🚀  Starting %s [%s]", settings.app_name, settings.app_env)
+
+    # Check database connection
     if not check_db_connection():
         logger.critical("❌  Cannot reach the database — aborting startup")
         sys.exit(1)

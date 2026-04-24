@@ -1,7 +1,7 @@
 """app/models/order.py"""
 from datetime import datetime
 from decimal import Decimal
-from sqlalchemy import DateTime, Enum, ForeignKey, Integer, Numeric, func
+from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 import enum
@@ -28,8 +28,8 @@ class Order(Base):
     amount: Mapped[Decimal] = mapped_column(Numeric(12, 2), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
     unit_price: Mapped[Decimal] = mapped_column(Numeric(12, 2), nullable=False)
-    order_status: Mapped[OrderStatus] = mapped_column(
-        Enum(OrderStatus), default=OrderStatus.PENDING, nullable=False
+    order_status: Mapped[str] = mapped_column(
+        String(20), default=OrderStatus.PENDING.value, nullable=False
     )
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
@@ -38,4 +38,6 @@ class Order(Base):
 
     product: Mapped["Product"] = relationship(back_populates="orders")  # noqa: F821
     user: Mapped["User"] = relationship(back_populates="orders")  # noqa: F821
-    transaction: Mapped["Transaction | None"] = relationship(back_populates="order", uselist=False)  # noqa: F821
+    transaction: Mapped["Transaction | None"] = relationship(  # noqa: F821
+        back_populates="order", uselist=False
+    )
