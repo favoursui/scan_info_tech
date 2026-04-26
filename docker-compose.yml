@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
 
-  # ── MySQL 8 ────────────────────────────────────────────────────────────────
+  #  MySQL 8 
   db:
     image: mysql:8.0
     container_name: scaninfotech_db
@@ -26,7 +26,7 @@ services:
     networks:
       - scannet
 
-  # ── phpMyAdmin ─────────────────────────────────────────────────────────────
+  #  phpMyAdmin 
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: scaninfotech_pma
@@ -43,7 +43,7 @@ services:
     networks:
       - scannet
 
-  # ── FastAPI Application ────────────────────────────────────────────────────
+  #  FastAPI Application 
   app:
     build:
       context: .
