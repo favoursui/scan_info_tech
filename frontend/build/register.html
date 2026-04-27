@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Scan Info Tech</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen flex">
+
+  <!-- Left: Background Image -->
+  <div class="hidden lg:block lg:w-1/2 relative">
+    <img src="img/auth-bg.jpg" alt="Background"
+      class="absolute inset-0 w-full h-full object-cover"
+      onerror="this.style.background='#3b2a1a'">
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Left Content -->
+    <div class="relative z-10 flex flex-col justify-between h-full p-12 text-white">
+      <div class="flex items-center gap-3">
+        <img src="img/logo.png" alt="Logo" class="w-10 h-10 rounded-full object-cover"
+          onerror="this.style.display='none'">
+        <span class="font-serif font-bold text-2xl">Scan Info Tech</span>
+      </div>
+      <div>
+        <blockquote class="font-serif italic text-2xl leading-relaxed mb-4">
+          "Shop smarter, live better <br>quality products at your fingertips."
+        </blockquote>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <svg class="w-5 h-5 text-[#c17f24] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            Fast and secure checkout
+          </div>
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <svg class="w-5 h-5 text-[#c17f24] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            Exclusive member discounts
+          </div>
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <svg class="w-5 h-5 text-[#c17f24] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            Real-time order tracking
+          </div>
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <svg class="w-5 h-5 text-[#c17f24] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            24/7 customer support
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Glassmorphism Form -->
+  <div class="w-full lg:w-1/2 relative flex items-center justify-center px-6 py-12 bg-[#3b2a1a]">
+
+    <!-- Background texture for glass effect -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-80 h-80 bg-[#c17f24]/20 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-[#c17f24]/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-md">
+
+      <!-- Mobile Logo -->
+      <div class="flex lg:hidden items-center gap-3 mb-8">
+        <img src="img/logo.png" alt="Logo" class="w-9 h-9 rounded-full object-cover"
+          onerror="this.style.display='none'">
+        <span class="font-serif font-bold text-xl text-white">Scan Info Tech</span>
+      </div>
+
+      <!-- Glass Card -->
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8">
+
+        <p class="text-xs font-bold tracking-widest text-[#c17f24] uppercase mb-2">Join The Collection</p>
+        <h1 class="font-serif text-3xl text-white mb-1">Create Account</h1>
+        <p class="text-white/50 text-sm mb-6">
+          Already a member?
+          <a href="login.html" class="text-[#c17f24] font-semibold hover:underline">Sign in</a>
+        </p>
+
+        <!-- Alerts -->
+        <div id="register-error"
+          class="hidden bg-red-500/20 border border-red-400/30 text-red-200 text-sm rounded-xl px-4 py-3 mb-4"></div>
+        <div id="register-success"
+          class="hidden bg-green-500/20 border border-green-400/30 text-green-200 text-sm rounded-xl px-4 py-3 mb-4"></div>
+
+        <form id="register-form" class="space-y-4">
+
+          <!-- Username -->
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-1">Username</label>
+            <input id="username" type="text" placeholder="scan-user"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#c17f24] focus:border-transparent backdrop-blur-sm transition-all"
+              required minlength="3" />
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-1">Email Address</label>
+            <input id="email" type="email" placeholder="user@example.com"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#c17f24] focus:border-transparent backdrop-blur-sm transition-all"
+              required />
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-1">Password</label>
+            <div class="relative">
+              <input id="password" type="password" placeholder="••••••••••••••"
+                class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 pr-11 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#c17f24] focus:border-transparent backdrop-blur-sm transition-all"
+                required minlength="8" />
+              <button type="button"
+                class="toggle-password absolute right-3 top-3.5 text-white/40 hover:text-white/80 transition-colors"
+                data-target="password">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+            <!-- Strength bar -->
+            <div class="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
+              <div id="strength-bar" class="h-1 rounded-full transition-all duration-300" style="width:0%"></div>
+            </div>
+            <p id="strength-label" class="text-xs text-white/40 mt-1"></p>
+          </div>
+
+          <!-- Shipping Address -->
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-1">
+              Shipping Address
+              <span class="text-white/30 font-normal text-xs">(optional)</span>
+            </label>
+            <input id="shipping_address" type="text" placeholder="12 Example Street, Jos"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#c17f24] focus:border-transparent backdrop-blur-sm transition-all" />
+          </div>
+
+          <!-- Terms -->
+          <div class="flex items-start gap-3">
+            <input id="terms" type="checkbox"
+              class="mt-1 w-4 h-4 accent-[#c17f24] cursor-pointer flex-shrink-0" />
+            <label for="terms" class="text-xs text-white/50 cursor-pointer leading-relaxed">
+              I agree to Scan Info Tech's
+              <a href="#" class="text-[#c17f24] hover:underline">Terms of Service</a> and
+              <a href="#" class="text-[#c17f24] hover:underline">Privacy Policy</a>.
+              I understand my data will be handled with care and never sold.
+            </label>
+          </div>
+
+          <button id="register-btn" type="submit" data-label="Create My Account"
+            class="w-full bg-[#c17f24] hover:bg-[#a66d1a] text-white font-semibold py-3.5 rounded-xl transition-all duration-200 text-sm mt-2">
+            Create My Account
+          </button>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-white/10 text-center">
+          <p class="text-white/30 text-xs mb-3">Already have an account?</p>
+          <a href="login.html"
+            class="flex items-center justify-center gap-2 text-white/70 hover:text-[#c17f24] font-medium text-sm transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+            </svg>
+            Sign In Instead
+          </a>
+        </div>
+
+        <p class="text-center text-xs text-white/20 mt-5">
+          Your information is encrypted and secure.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

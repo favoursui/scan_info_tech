@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart - Scan Info Tech</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen bg-[#f5efe6]">
+
+  <div id="navbar"></div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <p class="text-xs font-bold tracking-widest text-[#c17f24] uppercase mb-1">Your Selections</p>
+      <h1 class="font-serif text-4xl text-[#3b2a1a]">Shopping Cart</h1>
+    </div>
+
+    <!-- Loading -->
+    <div id="cart-loading" class="flex justify-center py-20">
+      <div class="w-10 h-10 border-4 border-[#c17f24] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Empty -->
+    <div id="cart-empty" class="hidden text-center py-20">
+      <svg class="w-20 h-20 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+      </svg>
+      <p class="text-gray-400 text-lg mb-4">Your cart is empty.</p>
+      <a href="index.html" class="btn-primary inline-block px-8 py-3 rounded-full">Start Shopping</a>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Cart Items -->
+      <div id="cart-container" class="lg:col-span-2 space-y-4"></div>
+
+      <!-- Summary -->
+      <div id="cart-summary" class="hidden">
+        <div class="card p-6 sticky top-24">
+          <h2 class="font-serif text-xl text-[#3b2a1a] mb-6">Order Summary</h2>
+          <div class="flex justify-between text-sm text-gray-500 mb-2">
+            <span>Subtotal</span>
+            <span id="cart-total" class="font-bold text-[#3b2a1a]">₦0.00</span>
+          </div>
+          <div class="flex justify-between text-sm text-gray-500 mb-4">
+            <span>Delivery</span>
+            <span class="text-green-600 font-medium">Free</span>
+          </div>
+          <hr class="border-gray-100 mb-4">
+          <div class="flex justify-between font-bold text-[#3b2a1a] text-lg mb-6">
+            <span>Total</span>
+            <span id="cart-total-final">₦0.00</span>
+          </div>
+          <button id="checkout-btn"
+            class="btn-primary w-full py-4 rounded-lg text-base font-bold">
+            Checkout Now
+          </button>
+          <a href="index.html"
+            class="block text-center text-sm text-gray-400 hover:text-[#c17f24] mt-4">
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-[#3b2a1a] text-white/70 text-center py-8 mt-12">
+    <p class="text-sm">© 2025 Scan Info Tech. All rights reserved.</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

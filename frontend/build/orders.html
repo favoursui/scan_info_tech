@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orders - Scan Info Tech</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen bg-[#f5efe6]">
+
+  <div id="navbar"></div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <p class="text-xs font-bold tracking-widest text-[#c17f24] uppercase mb-1">Your Purchases</p>
+      <h1 class="font-serif text-4xl text-[#3b2a1a]">Order History</h1>
+    </div>
+
+    <!-- Loading -->
+    <div id="orders-loading" class="flex justify-center py-20">
+      <div class="w-10 h-10 border-4 border-[#c17f24] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Empty -->
+    <div id="orders-empty" class="hidden text-center py-20">
+      <svg class="w-20 h-20 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+      </svg>
+      <p class="text-gray-400 text-lg mb-4">You haven't placed any orders yet.</p>
+      <a href="index.html" class="btn-primary inline-block px-8 py-3 rounded-full">Start Shopping</a>
+    </div>
+
+    <div id="orders-container" class="space-y-4"></div>
+  </div>
+
+  <footer class="bg-[#3b2a1a] text-white/70 text-center py-8 mt-12">
+    <p class="text-sm">© 2025 Scan Info Tech. All rights reserved.</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>
