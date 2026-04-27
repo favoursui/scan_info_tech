@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-[#f0e1c9] text-[#3b2a1a] font-sans;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#c17f24] hover:bg-[#a66d1a] text-white font-semibold py-3 px-6 rounded transition-all duration-200;
+  }
+  .btn-outline {
+    @apply border border-[#3b2a1a] text-[#3b2a1a] hover:bg-[#3b2a1a] hover:text-white font-semibold py-2 px-5 rounded transition-all duration-200;
+  }
+  .glass {
+    @apply bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-xl;
+  }
+  .input-field {
+    @apply w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#c17f24] bg-white/80 placeholder-gray-400;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden;
+  }
+  .nav-link {
+    @apply text-[#3b2a1a] hover:text-[#c17f24] font-medium transition-colors duration-200;
+  }
+  .badge {
+    @apply absolute -top-2 -right-2 bg-[#c17f24] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center;
+  }
+}
