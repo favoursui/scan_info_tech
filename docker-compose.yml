@@ -43,7 +43,7 @@ services:
     networks:
       - scannet
 
-  #  FastAPI Application 
+  #  FastAPI Backend 
   app:
     build:
       context: .
@@ -57,6 +57,7 @@ services:
       DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - "8000:8000"
     depends_on:
@@ -64,7 +65,22 @@ services:
         condition: service_healthy
     networks:
       - scannet
-    entrypoint: ["sh", "entrypoint.sh"]
+    entrypoint: ["sh", "/app/entrypoint.sh"]
+
+  #  Frontend (Nginx) 
+  frontend:
+    image: nginx:alpine
+    container_name: scaninfotech_frontend
+    restart: unless-stopped
+    volumes:
+      - ./frontend/build:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "3000:80"
+    depends_on:
+      - app
+    networks:
+      - scannet
 
 volumes:
   mysql_data:
