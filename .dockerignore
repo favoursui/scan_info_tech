@@ -9,8 +9,6 @@ __pycache__
 *.pyd
 .Python
 *.egg-info
-dist
-build
 .eggs
 
 # Virtual environments
@@ -20,7 +18,7 @@ env
 
 # Environment / secrets
 .env
-*.env.local
+
 
 # Testing
 .pytest_cache
@@ -39,3 +37,5 @@ Thumbs.db
 
 # Docker
 docker-compose.override.yml
+
+node_modules
