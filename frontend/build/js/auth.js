@@ -80,11 +80,14 @@ async function handleLogin(e) {
     const data = await api.post("/auth/login", { email, password });
     api.setToken(data.access_token);
 
-    // Fetch user profile
-    const user = await api.get("/admin/users").catch(() => null);
-    // Store basic info from token decode
-    const payload = parseJwt(data.access_token);
-    api.setUser({ id: payload.sub, is_admin: payload.is_admin, username: email.split("@")[0] });
+    // Fetch real profile using the token
+    const me = await api.get("/auth/me");
+    api.setUser({
+      id: me.id,
+      is_admin: me.is_admin,
+      username: me.username,
+      email: me.email,
+    });
 
     showSuccess(successEl, "Login successful! Redirecting...");
     setTimeout(() => {

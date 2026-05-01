@@ -53,10 +53,10 @@
     <!-- Section Header -->
     <div class="flex items-end justify-between mb-8">
       <div>
-        <p class="text-xs font-bold tracking-[0.2em] text-[#c17f24] uppercase mb-2">New Arrivals</p>
-        <h2 class="font-serif text-4xl text-[#3b2a1a]">Recently Sourced</h2>
+        <p class="text-xs font-bold tracking-[0.2em] text-[#c17f24] uppercase mb-2">New Products</p>
+        <h2 class="font-serif text-4xl text-[#3b2a1a]">Recently Listed</h2>
       </div>
-      <a href="#products"
+      <a href="more-products.html"
         class="text-sm font-semibold text-[#47331f] hover:text-[#bb8a42] flex items-center gap-1 transition-colors">
         View All
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +85,128 @@
     </div>
   </section>
 
-    <!-- Footer -->
+  <!-- Services Preview Section -->
+  <section id="services-preview-section"
+    class="py-14 px-4 sm:px-6 lg:px-8"
+    style="background: linear-gradient(135deg, #3b2a1a 0%, #2a1e12 100%);">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Header -->
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="text-xs font-bold tracking-[0.2em] text-[#c17f24] uppercase mb-2">
+            What We Offer
+          </p>
+          <h2 class="font-serif text-4xl text-white">Our Services</h2>
+        </div>
+        <a href="services.html"
+          class="text-sm font-semibold text-[#c17f24] hover:text-[#e09030]
+                 flex items-center gap-1 transition-colors">
+          See All
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Loading -->
+      <div id="services-preview-loading" class="flex justify-center py-12">
+        <div class="w-8 h-8 border-4 border-[#c17f24] border-t-transparent
+                    rounded-full animate-spin"></div>
+      </div>
+
+      <!-- Grid — 4 columns, 2 rows = 8 cards -->
+      <div id="services-preview-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Booking Modal (shared) -->
+  <div id="booking-modal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden
+           items-center justify-center px-4">
+    <div class="bg-[#3b2a1a] border border-white/10 rounded-3xl shadow-2xl
+                w-full max-w-lg p-8 relative">
+      <button onclick="closeBookingModal()"
+        class="absolute top-4 right-4 text-white/40 hover:text-white transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <p class="text-xs font-bold tracking-widest text-[#c17f24] uppercase mb-2">
+        Book a Service
+      </p>
+      <h2 class="font-serif text-2xl text-white mb-1">
+        <span id="modal-service-name">Service Name</span>
+      </h2>
+      <p class="text-white/40 text-sm mb-6">
+        Fill in your details and we'll get back to you shortly.
+      </p>
+      <div id="booking-error"
+        class="hidden bg-red-500/20 border border-red-400/30 text-red-200
+               text-sm rounded-xl px-4 py-3 mb-4"></div>
+      <div id="booking-success"
+        class="hidden bg-green-500/20 border border-green-400/30 text-green-200
+               text-sm rounded-xl px-4 py-3 mb-4"></div>
+      <form id="booking-form" class="space-y-4">
+        <input type="hidden" id="booking-service-name" />
+        <div>
+          <label class="block text-sm font-medium text-white/70 mb-1">
+            Full Name <span class="text-red-400">*</span>
+          </label>
+          <input id="b-name" type="text" placeholder="John Doe" required
+            class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3
+                   text-white placeholder-white/30 text-sm focus:outline-none
+                   focus:ring-2 focus:ring-[#c17f24] focus:border-transparent
+                   backdrop-blur-sm transition-all" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-white/70 mb-1">
+            Email Address <span class="text-red-400">*</span>
+          </label>
+          <input id="b-email" type="email" placeholder="john@example.com" required
+            class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3
+                   text-white placeholder-white/30 text-sm focus:outline-none
+                   focus:ring-2 focus:ring-[#c17f24] focus:border-transparent
+                   backdrop-blur-sm transition-all" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-white/70 mb-1">
+            Phone Number
+            <span class="text-white/30 font-normal">(optional)</span>
+          </label>
+          <input id="b-phone" type="tel" placeholder="+234 800 000 0000"
+            class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3
+                   text-white placeholder-white/30 text-sm focus:outline-none
+                   focus:ring-2 focus:ring-[#c17f24] focus:border-transparent
+                   backdrop-blur-sm transition-all" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-white/70 mb-1">
+            Message
+            <span class="text-white/30 font-normal">(optional)</span>
+          </label>
+          <textarea id="b-message" rows="3"
+            placeholder="Tell us more about what you need..."
+            class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3
+                   text-white placeholder-white/30 text-sm focus:outline-none
+                   focus:ring-2 focus:ring-[#c17f24] focus:border-transparent
+                   backdrop-blur-sm transition-all resize-none"></textarea>
+        </div>
+        <button id="booking-btn" type="submit"
+          class="w-full bg-[#c17f24] hover:bg-[#a66d1a] text-white font-semibold
+                 py-4 rounded-xl transition-all duration-200 text-sm mt-2">
+          Submit Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer class="bg-[#3b2a1a] text-white pt-16 pb-8">
     <div class="max-w-7xl mx-auto px-6">
 
@@ -102,7 +223,7 @@
           </div>
           <p class="text-[#c17f24] text-xs font-semibold tracking-widest uppercase mb-3">EST. 2025</p>
           <p class="text-white/50 text-sm leading-relaxed">
-            Quality products curated for everyone. Shop smarter, live better — delivered to your door.
+            Quality products curated for everyone. Shop smarter, live better - delivered to your door.
           </p>
 
           <!-- Social Icons -->
@@ -176,5 +297,6 @@
   <script src="js/api.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/services.js"></script>
 </body>
 </html>

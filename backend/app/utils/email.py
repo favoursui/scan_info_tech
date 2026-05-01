@@ -1,5 +1,4 @@
 """
-app/utils/email.py
 Email notification helper using fastapi-mail.
 """
 import logging
@@ -209,3 +208,107 @@ async def send_password_reset_otp(email: str, username: str, otp: str) -> None:
         logger.info("<<< OTP email sent successfully to %s", email)
     except Exception as exc:
         logger.error("<<< Failed to send OTP email to %s: %s", email, exc)
+
+
+async def send_booking_email(
+    service_name: str,
+    client_name: str,
+    client_email: str,
+    client_phone: str,
+    message: str,
+    admin_email: str,
+) -> None:
+    logger.info(">>> send_booking_email for service: %s", service_name)
+    try:
+        from fastapi_mail import MessageSchema, MessageType
+        mailer = _get_mailer()
+        if not mailer:
+            logger.warning("Mailer not configured — skipping booking email")
+            return
+
+        message_schema = MessageSchema(
+            subject=f"📅 New Service Booking — {service_name}",
+            recipients=[admin_email],
+            body=f"""
+            <html>
+            <body style="font-family: Arial, sans-serif; color: #1a1a1a;
+                         max-width: 600px; margin: auto; padding: 30px;">
+                <div style="background: #3b2a1a; padding: 20px;
+                            border-radius: 8px 8px 0 0; text-align: center;">
+                    <h1 style="color: #ffffff; margin: 0; font-size: 22px;">
+                        💼 New Service Booking
+                    </h1>
+                </div>
+                <div style="background: #f9f9f9; padding: 30px;
+                            border-radius: 0 0 8px 8px; border: 1px solid #ddd;">
+                    <p style="font-size: 16px; margin-top: 0;">
+                        A new booking request has been submitted.
+                    </p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <tr style="background: #f0e8dc;">
+                            <td style="padding: 12px 16px; font-weight: bold;
+                                       font-size: 14px; color: #3b2a1a; width: 35%;">
+                                Service
+                            </td>
+                            <td style="padding: 12px 16px; font-size: 14px;
+                                       color: #c17f24; font-weight: bold;">
+                                {service_name}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; font-weight: bold;
+                                       font-size: 14px; color: #3b2a1a; border-top: 1px solid #eee;">
+                                Name
+                            </td>
+                            <td style="padding: 12px 16px; font-size: 14px;
+                                       color: #555; border-top: 1px solid #eee;">
+                                {client_name}
+                            </td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 12px 16px; font-weight: bold;
+                                       font-size: 14px; color: #3b2a1a; border-top: 1px solid #eee;">
+                                Email
+                            </td>
+                            <td style="padding: 12px 16px; font-size: 14px;
+                                       color: #555; border-top: 1px solid #eee;">
+                                <a href="mailto:{client_email}" style="color: #c17f24;">
+                                    {client_email}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; font-weight: bold;
+                                       font-size: 14px; color: #3b2a1a; border-top: 1px solid #eee;">
+                                Phone
+                            </td>
+                            <td style="padding: 12px 16px; font-size: 14px;
+                                       color: #555; border-top: 1px solid #eee;">
+                                {client_phone or "Not provided"}
+                            </td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 12px 16px; font-weight: bold;
+                                       font-size: 14px; color: #3b2a1a; border-top: 1px solid #eee;">
+                                Message
+                            </td>
+                            <td style="padding: 12px 16px; font-size: 14px;
+                                       color: #555; border-top: 1px solid #eee;">
+                                {message or "No message provided"}
+                            </td>
+                        </tr>
+                    </table>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;">
+                    <p style="font-size: 13px; color: #888;">
+                        This booking was submitted via the Scan Info Tech website.
+                    </p>
+                </div>
+            </body>
+            </html>
+            """,
+            subtype=MessageType.html,
+        )
+        await mailer.send_message(message_schema)
+        logger.info("<<< Booking email sent successfully")
+    except Exception as exc:
+        logger.error("<<< Failed to send booking email: %s", exc)

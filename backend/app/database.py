@@ -1,5 +1,4 @@
 """
-app/database.py
 SQLAlchemy async-compatible session factory and declarative base.
 """
 import logging

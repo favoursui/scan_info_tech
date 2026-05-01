@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop - Scan Info Tech</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen bg-[#f5efe6]">
+
+  <div id="navbar"></div>
+
+  <!-- Page Header -->
+  <section class="bg-[#3b2a1a] py-12 px-6 text-center">
+    <p class="text-xs font-bold tracking-[0.3em] text-[#c17f24] uppercase mb-2">Our Collection</p>
+    <h1 class="font-serif text-4xl md:text-5xl text-white mb-3">All Products</h1>
+    <p class="text-white/60 text-sm max-w-xl mx-auto">
+      Browse our full collection of quality products curated just for you.
+    </p>
+  </section>
+
+  <!-- Filters + Search -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8">
+      <p id="product-count" class="text-sm text-gray-400">Loading products...</p>
+      <div class="flex gap-3 w-full sm:w-auto">
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search products..."
+          oninput="filterProducts()"
+          class="flex-1 sm:w-64 border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#c17f24]"
+        />
+        <select
+          id="sort-select"
+          onchange="filterProducts()"
+          class="border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#c17f24]">
+          <option value="default">Sort By</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A–Z</option>
+          <option value="name-desc">Name: Z–A</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="products-loading" class="flex justify-center py-20">
+      <div class="w-10 h-10 border-4 border-[#c17f24] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Empty -->
+    <div id="products-empty" class="hidden text-center py-20">
+      <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+      </svg>
+      <p class="text-gray-400 text-lg">No products found.</p>
+    </div>
+
+    <!-- Grid -->
+    <div id="products-grid"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#3b2a1a] text-white pt-16 pb-8 mt-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <img src="img/logo.png" alt="Logo" class="w-9 h-9 rounded-full object-cover"
+              onerror="this.style.display='none'">
+            <span class="font-serif font-bold text-xl">Scan Info Tech</span>
+          </div>
+          <p class="text-[#c17f24] text-xs font-semibold tracking-widest uppercase mb-3">EST. 2025</p>
+          <p class="text-white/50 text-sm leading-relaxed">
+            Quality products curated for everyone.
+          </p>
+          <div class="flex items-center gap-4 mt-6">
+            <a href="#" class="text-white/50 hover:text-[#c17f24] transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-white/50 hover:text-[#c17f24] transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" class="text-white/50 hover:text-[#c17f24] transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-widest mb-5">Shop</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="text-white/50 hover:text-white text-sm transition-colors">Home</a></li>
+            <li><a href="more-products.html" class="text-white/50 hover:text-white text-sm transition-colors">All Products</a></li>
+            <li><a href="cart.html" class="text-white/50 hover:text-white text-sm transition-colors">Cart</a></li>
+            <li><a href="orders.html" class="text-white/50 hover:text-white text-sm transition-colors">Track Order</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-widest mb-5">Account</h4>
+          <ul class="space-y-3">
+            <li><a href="login.html" class="text-white/50 hover:text-white text-sm transition-colors">Sign In</a></li>
+            <li><a href="register.html" class="text-white/50 hover:text-white text-sm transition-colors">Register</a></li>
+            <li><a href="orders.html" class="text-white/50 hover:text-white text-sm transition-colors">My Orders</a></li>
+            <li><a href="cart.html" class="text-white/50 hover:text-white text-sm transition-colors">Cart</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-widest mb-5">Help</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="text-white/50 hover:text-white text-sm transition-colors">About Us</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Shipping Info</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Returns</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-white/30 text-sm">© 2025 Scan Info Tech. All rights reserved.</p>
+        <p class="text-white/30 text-sm">Powered by secure e-commerce.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/more-products.js"></script>
+</body>
+</html>

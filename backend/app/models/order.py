@@ -1,4 +1,3 @@
-"""app/models/order.py"""
 from datetime import datetime
 from decimal import Decimal
 from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String, func

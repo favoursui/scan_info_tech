@@ -1,4 +1,3 @@
-"""app/models/user.py"""
 from datetime import datetime
 from sqlalchemy import Boolean, DateTime, Integer, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship

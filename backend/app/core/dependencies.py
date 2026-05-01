@@ -1,5 +1,4 @@
 """
-app/core/dependencies.py
 FastAPI dependency functions for authentication and authorisation.
 """
 from fastapi import Depends, HTTPException, status

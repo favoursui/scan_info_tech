@@ -4,11 +4,11 @@ from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 
 
-class Guest(Base):
-    __tablename__ = "guests"
+class Service(Base):
+    __tablename__ = "services"
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    guest_id: Mapped[str] = mapped_column(String(36), unique=True, nullable=False, index=True)
+    name: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, server_default=func.now(), onupdate=func.now()

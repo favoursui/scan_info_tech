@@ -1,5 +1,4 @@
 """
-app/services/product_service.py
 CRUD operations for products including Cloudinary image management.
 """
 from fastapi import HTTPException, UploadFile, status

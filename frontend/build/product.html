@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product - Scan Info Tech</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen bg-[#f5efe6]">
+
+  <div id="navbar"></div>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <div class="flex items-center gap-2 text-sm text-gray-400">
+      <a href="index.html" class="hover:text-[#c17f24] transition-colors">Home</a>
+      <span>/</span>
+      <a href="more-products.html" class="hover:text-[#c17f24] transition-colors">Shop</a>
+      <span>/</span>
+      <span id="breadcrumb-name" class="text-[#3b2a1a] font-medium">Product</span>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="product-loading" class="flex justify-center py-32">
+    <div class="w-10 h-10 border-4 border-[#c17f24] border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Product Detail -->
+  <div id="product-detail" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <p class="text-sm text-gray-400 mb-6 font-medium">Your Best Collection Details</p>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+      <!-- Left: Product Image -->
+      <div class="sticky top-24">
+        <div class="rounded-2xl overflow-hidden bg-white shadow-sm aspect-square">
+          <img
+            id="product-image"
+            src=""
+            alt="Product"
+            class="w-full h-full object-cover"
+            onerror="this.src='img/placeholder.jpg'"
+          >
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+            <svg class="w-6 h-6 text-[#c17f24] mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            <p class="text-xs text-gray-500 font-medium">Authenticated</p>
+          </div>
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+            <svg class="w-6 h-6 text-[#c17f24] mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+            </svg>
+            <p class="text-xs text-gray-500 font-medium">Secure Shipping</p>
+          </div>
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+            <svg class="w-6 h-6 text-[#c17f24] mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            <p class="text-xs text-gray-500 font-medium">14-Day Returns</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Product Info -->
+      <div>
+        <p class="text-xs font-bold tracking-[0.3em] text-[#c17f24] uppercase mb-3">Scan Info Tech</p>
+
+        <h1 id="product-name" class="font-serif text-4xl text-[#3b2a1a] mb-4 leading-tight">
+          Product Name
+        </h1>
+
+        <div class="flex items-center gap-4 mb-4">
+          <span id="product-price" class="font-bold text-[#3b2a1a] text-2xl">₦0.00</span>
+          <span id="product-stock-badge"
+            class="text-xs font-semibold px-3 py-1 rounded-full bg-green-100 text-green-700">
+            In Stock
+          </span>
+        </div>
+
+        <p id="product-description" class="text-gray-500 leading-relaxed mb-6 text-base">
+          No description available.
+        </p>
+
+        <!-- Divider -->
+        <hr class="border-gray-200 mb-6">
+
+        <!-- Product Meta -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm mb-6">
+          <div class="flex items-center justify-between px-5 py-3.5 border-b border-gray-50">
+            <span class="text-sm text-gray-400">Condition</span>
+            <span class="text-sm font-semibold text-[#3b2a1a]">Excellent</span>
+          </div>
+          <div class="flex items-center justify-between px-5 py-3.5 border-b border-gray-50">
+            <span class="text-sm text-gray-400">Availability</span>
+            <span id="product-stock-text" class="text-sm font-semibold text-[#3b2a1a]">In Stock</span>
+          </div>
+          <div class="flex items-center justify-between px-5 py-3.5">
+            <span class="text-sm text-gray-400">SKU</span>
+            <span id="product-sku" class="text-sm font-semibold text-[#3b2a1a] font-mono">SCN-00000</span>
+          </div>
+        </div>
+
+        <!-- Quantity Selector -->
+        <div class="flex items-center gap-4 mb-4">
+          <span class="text-sm font-medium text-[#3b2a1a]">Quantity</span>
+          <div class="flex items-center border border-gray-200 rounded-xl overflow-hidden bg-white">
+            <button onclick="changeQty(-1)"
+              class="w-10 h-10 flex items-center justify-center text-gray-500 hover:bg-gray-50 text-lg font-bold transition-colors">
+              −
+            </button>
+            <span id="qty-display"
+              class="w-12 text-center font-bold text-[#3b2a1a] text-sm border-x border-gray-200 h-10 flex items-center justify-center">
+              1
+            </span>
+            <button onclick="changeQty(1)"
+              class="w-10 h-10 flex items-center justify-center text-gray-500 hover:bg-gray-50 text-lg font-bold transition-colors">
+              +
+            </button>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="space-y-3 mb-6">
+          <button id="add-to-cart-btn"
+            onclick="handleAddToCart()"
+            class="w-full bg-[#3b2a1a] hover:bg-[#c17f24] text-white font-semibold py-4 rounded-xl transition-all duration-200 text-base">
+            Add to Cart
+          </button>
+          <button id="buy-now-btn"
+            onclick="handleBuyNow()"
+            class="w-full border-2 border-[#3b2a1a] text-[#3b2a1a] hover:bg-[#3b2a1a] hover:text-white font-semibold py-4 rounded-xl transition-all duration-200 text-base">
+            Buy Now
+          </button>
+        </div>
+
+        <!-- Secondary Actions -->
+        <div class="flex items-center justify-between text-sm text-gray-400">
+          <button
+            onclick="shareProduct()"
+            class="flex items-center gap-2 hover:text-[#c17f24] transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+            </svg>
+            Share
+          </button>
+          <a href="more-products.html"
+            class="flex items-center gap-2 hover:text-[#c17f24] transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to Shop
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Not Found -->
+  <div id="product-not-found" class="hidden text-center py-32">
+    <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+        d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <p class="text-gray-400 text-lg mb-4">Product not found.</p>
+    <a href="more-products.html" class="btn-primary inline-block px-8 py-3 rounded-full">
+      Back to Shop
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#3b2a1a] text-white pt-16 pb-8 mt-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <img src="img/logo.png" alt="Logo" class="w-9 h-9 rounded-full object-cover"
+              onerror="this.style.display='none'">
+            <span class="font-serif font-bold text-xl">Scan Info Tech</span>
+          </div>
+          <p class="text-[#c17f24] text-xs font-semibold tracking-widest uppercase mb-3">EST. 2025</p>
+          <p class="text-white/50 text-sm leading-relaxed">Quality products just a click away.</p>
+          <div class="flex items-center gap-4 mt-6">
+            <a href="#" class="text-white/50 hover:text-[#c17f24] transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-white/50 hover:text-[#c17f24] transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" class="text-white/50 hover:text-[#c17f24] transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-widest mb-5">Shop</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="text-white/50 hover:text-white text-sm transition-colors">Home</a></li>
+            <li><a href="more-products.html" class="text-white/50 hover:text-white text-sm transition-colors">All Products</a></li>
+            <li><a href="cart.html" class="text-white/50 hover:text-white text-sm transition-colors">Cart</a></li>
+            <li><a href="orders.html" class="text-white/50 hover:text-white text-sm transition-colors">Track Order</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-widest mb-5">Account</h4>
+          <ul class="space-y-3">
+            <li><a href="login.html" class="text-white/50 hover:text-white text-sm transition-colors">Sign In</a></li>
+            <li><a href="register.html" class="text-white/50 hover:text-white text-sm transition-colors">Register</a></li>
+            <li><a href="orders.html" class="text-white/50 hover:text-white text-sm transition-colors">My Orders</a></li>
+            <li><a href="cart.html" class="text-white/50 hover:text-white text-sm transition-colors">Cart</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-widest mb-5">Help</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="text-white/50 hover:text-white text-sm transition-colors">About Us</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Shipping Info</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Returns</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-white/30 text-sm">© 2026 Scan Info Tech. All rights reserved.</p>
+        <p class="text-white/30 text-sm">Powered by secure e-commerce.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

@@ -1,5 +1,4 @@
 """
-app/config.py
 Centralised configuration loaded from environment variables / .env file.
 """
 from functools import lru_cache

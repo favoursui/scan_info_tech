@@ -19,4 +19,5 @@ __all__ = [
     "Guest",
     "Order",
     "Transaction",
+    "Service"
 ]

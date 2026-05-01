@@ -1,5 +1,4 @@
 """
-app/utils/cloudinary.py
 Thin wrapper around the Cloudinary Python SDK.
 All credentials are injected from Settings at module load time.
 """

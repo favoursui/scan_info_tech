@@ -1,4 +1,3 @@
-"""app/models/account.py"""
 from datetime import datetime
 from decimal import Decimal
 from sqlalchemy import DateTime, ForeignKey, Numeric, func

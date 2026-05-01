@@ -1,5 +1,4 @@
 """
-app/core/security.py
 Password hashing (bcrypt) and JWT token creation / verification.
 Uses PyJWT (actively maintained, works with cryptography 42+).
 """

@@ -1,5 +1,4 @@
 """
-app/routes/inventory.py
 Admin-only inventory management with Cloudinary image handling.
 """
 from decimal import Decimal, InvalidOperation

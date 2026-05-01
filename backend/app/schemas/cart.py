@@ -1,4 +1,3 @@
-"""app/schemas/cart.py"""
 from decimal import Decimal
 from pydantic import BaseModel, Field
 from app.schemas.product import ProductOut

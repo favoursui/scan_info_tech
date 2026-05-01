@@ -25,16 +25,19 @@ async function loadCart() {
     renderCartSummary(items);
   } catch (err) {
     if (loading) loading.classList.add("hidden");
-    if (container) container.innerHTML = `<p class="text-red-500 text-center py-10">Failed to load cart.</p>`;
+    if (container)
+      container.innerHTML = `<p class="text-red-500 text-center py-10">Failed to load cart.</p>`;
   }
 }
 
 function renderCartItems(items, container) {
   if (!container) return;
-  container.innerHTML = items.map((item) => `
+  container.innerHTML = items
+    .map(
+      (item) => `
     <div id="cart-item-${item.id}" class="card flex gap-4 p-4 items-start">
       <img
-        src="${item.product?.image_url || 'img/placeholder.jpg'}"
+        src="${item.product?.image_url || "img/placeholder.jpg"}"
         alt="${item.product?.name}"
         class="w-24 h-28 object-cover rounded-lg"
         onerror="this.src='img/placeholder.jpg'"
@@ -42,7 +45,9 @@ function renderCartItems(items, container) {
       <div class="flex-1">
         <p class="text-xs text-[#c17f24] font-semibold uppercase tracking-widest">Scan Info Tech</p>
         <h3 class="font-bold text-[#3b2a1a] text-base">${item.product?.name}</h3>
-        <p class="text-gray-400 text-sm">₦${Number(item.product?.price).toLocaleString("en-NG", { minimumFractionDigits: 2 })}</p>
+        <p class="text-gray-400 text-sm">
+          ₦${Number(item.product?.price).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
+        </p>
         <div class="flex items-center gap-3 mt-3">
           <button onclick="changeQty(${item.id}, ${item.quantity - 1})"
             class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 text-lg font-bold">−</button>
@@ -59,13 +64,23 @@ function renderCartItems(items, container) {
         </p>
       </div>
     </div>
-  `).join("");
+  `
+    )
+    .join("");
 }
 
 function renderCartSummary(items) {
-  const total = items.reduce((sum, item) => sum + Number(item.product?.price) * item.quantity, 0);
+  const total = items.reduce(
+    (sum, item) => sum + Number(item.product?.price) * item.quantity,
+    0
+  );
+
+  const formatted = `₦${total.toLocaleString("en-NG", { minimumFractionDigits: 2 })}`;
+
   const totalEl = document.getElementById("cart-total");
-  if (totalEl) totalEl.textContent = `₦${total.toLocaleString("en-NG", { minimumFractionDigits: 2 })}`;
+  const totalFinalEl = document.getElementById("cart-total-final");
+  if (totalEl) totalEl.textContent = formatted;
+  if (totalFinalEl) totalFinalEl.textContent = formatted;
 
   const checkoutBtn = document.getElementById("checkout-btn");
   if (checkoutBtn) {

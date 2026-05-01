@@ -1,5 +1,4 @@
 """
-gunicorn.conf.py
 Production Gunicorn configuration.
 Worker count formula: (2 × CPU cores) + 1
 """

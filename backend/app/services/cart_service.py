@@ -1,5 +1,4 @@
 """
-app/services/cart_service.py
 Cart operations for authenticated and guest users.
 """
 import uuid

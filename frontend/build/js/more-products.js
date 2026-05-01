@@ -1,28 +1,65 @@
-document.addEventListener("DOMContentLoaded", loadProducts);
+let allProducts = [];
 
-async function loadProducts() {
+document.addEventListener("DOMContentLoaded", loadAllProducts);
+
+async function loadAllProducts() {
   const grid = document.getElementById("products-grid");
   const loading = document.getElementById("products-loading");
   const empty = document.getElementById("products-empty");
-  if (!grid) return;
+  const count = document.getElementById("product-count");
 
   try {
-    const products = await api.get("/products?skip=0&limit=100");
+    allProducts = await api.get("/products?skip=0&limit=500");
     if (loading) loading.classList.add("hidden");
 
-    if (!products.length) {
+    if (!allProducts.length) {
       if (empty) empty.classList.remove("hidden");
       return;
     }
 
-    grid.innerHTML = products.map((p) => productCard(p)).join("");
+    if (count) count.textContent = `${allProducts.length} products available`;
+    renderGrid(allProducts);
   } catch (err) {
     if (loading) loading.classList.add("hidden");
-    grid.innerHTML = `
+    if (grid) grid.innerHTML = `
       <p class="col-span-4 text-center text-red-400 py-10">
         Failed to load products. Please try again.
       </p>`;
   }
+}
+
+function filterProducts() {
+  const q = document.getElementById("search-input")?.value.toLowerCase() || "";
+  const sort = document.getElementById("sort-select")?.value || "default";
+  const count = document.getElementById("product-count");
+
+  let filtered = allProducts.filter(
+    (p) =>
+      p.name.toLowerCase().includes(q) ||
+      (p.description || "").toLowerCase().includes(q)
+  );
+
+  if (sort === "price-asc") filtered.sort((a, b) => Number(a.price) - Number(b.price));
+  if (sort === "price-desc") filtered.sort((a, b) => Number(b.price) - Number(a.price));
+  if (sort === "name-asc") filtered.sort((a, b) => a.name.localeCompare(b.name));
+  if (sort === "name-desc") filtered.sort((a, b) => b.name.localeCompare(a.name));
+
+  if (count) count.textContent = `${filtered.length} product${filtered.length !== 1 ? "s" : ""} found`;
+
+  const empty = document.getElementById("products-empty");
+  if (!filtered.length) {
+    if (empty) empty.classList.remove("hidden");
+    renderGrid([]);
+    return;
+  }
+  if (empty) empty.classList.add("hidden");
+  renderGrid(filtered);
+}
+
+function renderGrid(products) {
+  const grid = document.getElementById("products-grid");
+  if (!grid) return;
+  grid.innerHTML = products.map((p) => productCard(p)).join("");
 }
 
 function productCard(p) {
@@ -80,14 +117,12 @@ async function addToCart(productId, productName) {
 function showToast(msg, type = "success") {
   const existing = document.getElementById("toast-msg");
   if (existing) existing.remove();
-
   const toast = document.createElement("div");
   toast.id = "toast-msg";
   toast.className = `fixed bottom-6 right-6 z-50 px-5 py-3 rounded-lg shadow-lg text-white text-sm
     font-medium transition-all duration-300 ${type === "error" ? "bg-red-500" : "bg-[#3b2a1a]"}`;
   toast.textContent = msg;
   document.body.appendChild(toast);
-
   setTimeout(() => {
     toast.style.opacity = "0";
     setTimeout(() => toast.remove(), 300);

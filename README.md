@@ -25,8 +25,6 @@
 ```
 SCAN_INFO_TECH/
 │
-├── .vscode/
-│
 ├── backend/
 │   ├── alembic/
 │   ├── app/
@@ -46,6 +44,7 @@ SCAN_INFO_TECH/
 │   │   │   ├── order.py
 │   │   │   ├── product.py
 │   │   │   ├── transaction.py
+│   │   │   ├── service.py
 │   │   │   └── user.py
 │   │   │
 │   │   ├── routes/
@@ -56,6 +55,7 @@ SCAN_INFO_TECH/
 │   │   │   ├── cart.py
 │   │   │   ├── inventory.py
 │   │   │   ├── orders.py
+│   │   │   ├── services.py
 │   │   │   └── products.py
 │   │   │
 │   │   ├── schemas/
@@ -65,6 +65,7 @@ SCAN_INFO_TECH/
 │   │   │   ├── cart.py
 │   │   │   ├── order.py
 │   │   │   ├── product.py
+│   │   │   ├── service.py
 │   │   │   └── user.py
 │   │   │
 │   │   ├── services/
@@ -73,6 +74,7 @@ SCAN_INFO_TECH/
 │   │   │   ├── auth_service.py
 │   │   │   ├── cart_service.py
 │   │   │   ├── order_service.py
+│   │   │   ├── service.py
 │   │   │   └── product_service.py
 │   │   │
 │   │   ├── utils/
@@ -106,6 +108,8 @@ SCAN_INFO_TECH/
 │   │   │    ├── cart.js
 │   │   │    ├── nav.js
 │   │   │    ├── orders.js
+│   │   │    ├── services.js
+│   │   │    ├── more-products.js
 │   │   │    └── products.js
 │   │   │
 │   │   ├── about.html
@@ -115,7 +119,10 @@ SCAN_INFO_TECH/
 │   │   ├── index.html
 │   │   ├── login.html
 │   │   ├── orders.html
+│   │   ├── product.html
 │   │   ├── register.html
+│   │   ├── services.html
+│   │   ├── more-products.html
 │   │   └── reset-password.html
 │   │    
 │   ├── node_modules/

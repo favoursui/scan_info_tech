@@ -1,5 +1,4 @@
 """
-app/routes/products.py
 Public product listing and detail endpoints.
 """
 from fastapi import APIRouter, Depends, Query

@@ -1,5 +1,4 @@
 """
-app/routes/orders.py
 Protected order endpoints.
 """
 from fastapi import APIRouter, Depends

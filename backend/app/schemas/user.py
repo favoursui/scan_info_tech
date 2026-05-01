@@ -1,4 +1,3 @@
-"""app/schemas/user.py"""
 from datetime import datetime
 from pydantic import BaseModel, EmailStr, Field, field_validator
 import re

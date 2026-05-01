@@ -1,5 +1,4 @@
 """
-app/routes/admin.py
 Admin-only read endpoints and user management.
 """
 from fastapi import APIRouter, Depends, HTTPException, Query, status

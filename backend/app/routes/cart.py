@@ -1,5 +1,4 @@
 """
-app/routes/cart.py
 Cart endpoints.
 """
 from fastapi import APIRouter, Depends

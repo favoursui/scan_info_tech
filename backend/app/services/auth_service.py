@@ -1,6 +1,3 @@
-"""
-app/services/auth_service.py
-"""
 import asyncio
 import logging
 import random

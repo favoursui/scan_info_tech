@@ -1,5 +1,4 @@
 """
-app/services/order_service.py
 Checkout and order history logic.
 """
 from fastapi import HTTPException, status
